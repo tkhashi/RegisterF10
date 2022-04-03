@@ -6,8 +6,8 @@
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:behaviors="clr-namespace:RegistCodeBehind"
         xmlns:local="clr-namespace:RegistCodeBehind"
+        Loaded="MainWindow_OnLoaded"
         mc:Ignorable="d"
-        PreviewKeyDown="Window_PreviewKeyDown"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
         <local:MainWindowViewModel/>

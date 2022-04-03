@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Interop;
 
 namespace RegistCodeBehind
@@ -18,25 +17,6 @@ namespace RegistCodeBehind
         {
             InitializeComponent();
             _displayPageControl = this.DisplayPageControl;
-        }
-
-        public void Window_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            var handle = new WindowInteropHelper(this).Handle;
-            var devices = new RawInputDevice[1];
-            // デスクトップへの入力を指定
-            devices[0].UsagePage = 0x01;
-            // キーボードからの入力を指定 
-            devices[0].Usage = 0x06;
-            // ウィンドウが前面にいない場合もTargetへの入力を受け取るよう指定
-            devices[0].Flags = 0x00000100;
-            // 生入力を受け取るウィンドウの指定
-            devices[0].Target = handle;
-            RegisterRawInputDevices(devices, 1, Marshal.SizeOf(typeof(RawInputDevice)));
-            // GetWndProcフック
-            var hwndSourceHook = new HwndSourceHook(GetWndProc);
-            var hwndSource = (HwndSource) PresentationSource.FromVisual(this);
-            hwndSource?.AddHook(hwndSourceHook);
         }
 
         // F10の生入力を検知する用
@@ -114,6 +94,25 @@ namespace RegistCodeBehind
             public short VKey;
             public int Message;
             public long ExtrInformation;
+        }
+
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            var handle = new WindowInteropHelper(this).Handle;
+            var devices = new RawInputDevice[1];
+            // デスクトップへの入力を指定
+            devices[0].UsagePage = 0x01;
+            // キーボードからの入力を指定 
+            devices[0].Usage = 0x06;
+            // ウィンドウが前面にいない場合もTargetへの入力を受け取るよう指定
+            devices[0].Flags = 0x00000100;
+            // 生入力を受け取るウィンドウの指定
+            devices[0].Target = handle;
+            RegisterRawInputDevices(devices, 1, Marshal.SizeOf(typeof(RawInputDevice)));
+            // GetWndProcフック
+            var hwndSourceHook = new HwndSourceHook(GetWndProc);
+            var hwndSource = (HwndSource) PresentationSource.FromVisual(this);
+            hwndSource?.AddHook(hwndSourceHook);
         }
     }
 }
