@@ -5,25 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:behaviors="clr-namespace:RegistCodeBehind"
-        xmlns:vm="clr-namespace:RegistCodeBehind"
+        xmlns:local="clr-namespace:RegistCodeBehind"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
-        <vm:MainWindowViewModel/>
+        <local:MainWindowViewModel/>
     </Window.DataContext>
     <b:Interaction.Behaviors>
         <behaviors:KeyboardBehavior
             KeyType="F9"
             KeyDown="{Binding F9Command}"/>
-        <behaviors:KeyboardBehavior
+        <!--<behaviors:KeyboardBehavior
             KeyType="F10"
-            KeyDown="{Binding F10Command}"/>
+            KeyDown="{Binding F10Command}"/>-->
     </b:Interaction.Behaviors>
     <StackPanel>
         <!--F9を押すと値が変わる-->
         <TextBlock Text="{Binding F9Text.Value}"/>
-        <!--F9同様の書き方で実装してもF10では反応しない-->
-        <TextBlock Text="{Binding F10Text.Value}"/>
+        <local:DisplayPage/>
     </StackPanel>
 </Window>
 

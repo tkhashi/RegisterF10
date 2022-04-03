@@ -8,9 +8,7 @@ namespace RegistCodeBehind
     {
 
         public ReactivePropertySlim<string> F9Text { get; } = new ReactivePropertySlim<string>("何も押されてないよ");
-        public ReactivePropertySlim<string> F10Text { get; } = new ReactivePropertySlim<string>("何も押されてないよ");
         public ReactiveCommand F9Command { get; } = new ReactiveCommand();
-        public ReactiveCommand F10Command { get; } = new ReactiveCommand();
         private CompositeDisposable _disposable = new CompositeDisposable();
 
        public MainWindowViewModel()
@@ -22,10 +20,6 @@ namespace RegistCodeBehind
        private void OnF9Down()
        {
            F9Text.Value = "F9が押されたよ";
-       }
-       private void OnF10Down()
-       {
-           F10Text.Value = "F10が押されたよ";
        }
     }
 }
