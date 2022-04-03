@@ -7,6 +7,7 @@
         xmlns:behaviors="clr-namespace:RegistCodeBehind"
         xmlns:local="clr-namespace:RegistCodeBehind"
         mc:Ignorable="d"
+        PreviewKeyDown="Window_PreviewKeyDown"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
         <local:MainWindowViewModel/>
@@ -22,7 +23,7 @@
     <StackPanel>
         <!--F9を押すと値が変わる-->
         <TextBlock Text="{Binding F9Text.Value}"/>
-        <local:DisplayPage/>
+        <local:DisplayPage x:Name="DisplayPageControl"/>
     </StackPanel>
 </Window>
 

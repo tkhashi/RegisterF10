@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Diagnostics;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace RegistCodeBehind
@@ -15,6 +16,7 @@ namespace RegistCodeBehind
 
         private void UserControl_PreviewKeyDown(object sender, KeyEventArgs e)
         {
+            Debug.WriteLine("UserControl_PreviewKeyDownだよ");
             var vm = (DisplayPageViewModel) DataContext;
             if (vm.F10Command.CanExecute())
             {
